@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "137152303499",
+    "project_id": "minibuzz-c6253",
+    "storage_bucket": "minibuzz-c6253.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137152303499:android:0d5b9ac76658ce8238df8e",
+        "android_client_info": {
+          "package_name": "com.example.minibuzz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137152303499-le0oiaisk7sh1u4ukggna1q5pjpvm9hr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8nA4Ei9cQOTM-7KEUYNG95bRvaSkuCKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137152303499-le0oiaisk7sh1u4ukggna1q5pjpvm9hr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
