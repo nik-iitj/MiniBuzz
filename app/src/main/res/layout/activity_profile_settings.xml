@@ -17,20 +17,22 @@
             android:id="@+id/profile_img"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/profile"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:src="@drawable/profile">
+
         </ImageView>
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello MiniBuzz"
-            android:textSize="30sp"
-            android:fontFamily="@font/lsr"
-            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/profile_img"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp">
+            android:fontFamily="@font/lsr"
+            android:includeFontPadding="false"
+            android:text="Hello MiniBuzz"
+            android:textColor="@color/black"
+            android:textSize="30sp">
 
         </TextView>
 
