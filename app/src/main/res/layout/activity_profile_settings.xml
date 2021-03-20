@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:padding="30dp"
-        android:background="@color/black_overlay">
+        android:background="@color/thistle">
 
         <ImageView
             android:id="@+id/profile_img"
