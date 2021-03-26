@@ -44,6 +44,7 @@
 
         </RelativeLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,16 +56,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="FULL NAME"
+                android:hint="PROFILE NAME"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/lavender"
-                    android:letterSpacing="0.3"
                     android:text="Heyaa"
-                    android:textSize="20dp">
+                    android:inputType="text"
+                    android:textSize="20sp">
 
                 </com.google.android.material.textfield.TextInputEditText>
 
@@ -81,9 +82,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/lavender"
-                    android:letterSpacing="0.3"
                     android:text="Heyaa"
-                    android:textSize="20dp">
+                    android:inputType="text"
+                    android:textSize="20sp">
 
                 </com.google.android.material.textfield.TextInputEditText>
 
@@ -100,9 +101,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/lavender"
-                    android:letterSpacing="0.3"
                     android:text="Heyaa"
-                    android:textSize="20dp">
+                    android:inputType="text"
+                    android:textSize="20sp">
 
                 </com.google.android.material.textfield.TextInputEditText>
 
@@ -113,15 +114,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:hint="WhaT'S iN YoUr MiNd"
+                app:counterMaxLength="50"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/lavender"
-                    android:letterSpacing="0.3"
                     android:text="Heyaa"
-                    android:textSize="20dp"
+                    android:inputType="textMultiLine"
+                    android:textSize="20sp"
                     android:height="80dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
