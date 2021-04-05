@@ -52,8 +52,8 @@ public class SignInActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn()
-                ;
+                signIn();
+
             }
         });
 
@@ -134,11 +134,11 @@ public class SignInActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user){
         if(user!=null) {
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-            Toast.makeText(SignInActivity.this, "Here...", Toast.LENGTH_SHORT).show();
-            if (account != null) {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("data", account);
 
+            if (account != null) {
+                Intent intent = new Intent(this, ProfileSettingsActivity.class);
+                intent.putExtra("data", account);
+                Toast.makeText(SignInActivity.this, "Here...", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         }
