@@ -30,6 +30,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:id="@+id/txtTitle"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
@@ -44,7 +45,6 @@
 
         </RelativeLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,16 +56,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="PROFILE NAME"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:hint="FULL NAME">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/lavender"
-                    android:text="Heyaa"
-                    android:inputType="text"
-                    android:textSize="20sp">
+                    android:id="@+id/txtName"
+                    android:letterSpacing="0.3"
+                    android:textSize="20dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
 
@@ -75,16 +74,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="CONTACT DETAILS"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                android:hint="CONTACT DETAILS">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/txtContact"
                     android:background="@color/lavender"
-                    android:text="Heyaa"
-                    android:inputType="text"
-                    android:textSize="20sp">
+                    android:letterSpacing="0.3"
+                    android:textSize="20dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
 
@@ -94,16 +93,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="OTHER PROFILES"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:hint="OTHER PROFILES">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/lavender"
-                    android:text="Heyaa"
-                    android:inputType="text"
-                    android:textSize="20sp">
+                    android:id="@+id/txtOther"
+                    android:letterSpacing="0.3"
+                    android:textSize="20dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
 
@@ -113,33 +111,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:hint="WhaT'S iN YoUr MiNd"
-                app:counterMaxLength="50"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:hint="WhaT'S iN YoUr MiNd">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/lavender"
-                    android:text="Heyaa"
-                    android:inputType="textMultiLine"
-                    android:textSize="20sp"
+                    android:id="@+id/txtDescription"
+                    android:letterSpacing="0.3"
+                    android:textSize="20dp"
+                    android:gravity="center"
                     android:height="80dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <Button
                 android:layout_width="wrap_content"
+                android:id="@+id/save"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/lavender"
+                android:background="@color/black_overlay"
                 android:text="CHANGE IT !!">
 
             </Button>
-
 
         </LinearLayout>
 
