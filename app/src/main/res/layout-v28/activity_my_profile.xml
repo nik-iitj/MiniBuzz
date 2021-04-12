@@ -1,0 +1,94 @@
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#E2E0DF"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="192dp"
+                android:layout_height="192dp"
+                android:src="@drawable/profile"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#ffffff"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:id="@+id/profilePic"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Hello"
+                android:fontFamily="@font/harry"
+                android:layout_below="@+id/profilePic"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textSize="60sp"
+                android:textColor="@color/black"
+                android:id="@+id/name"
+                android:shadowColor="@color/black"
+                android:shadowRadius="5"
+                android:shadowDx="2"
+                android:shadowDy="5"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_centerHorizontal="true"
+                android:hint="nikhil@iitj.acc.in"
+                android:textSize="15sp"
+                android:layout_marginTop="2dp"
+                android:id="@+id/contact"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/contact"
+                android:layout_centerHorizontal="true"
+                android:hint="Bio"
+
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_corner"
+                android:padding="20dp"
+                android:id="@+id/bio"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More ways to reach :)"
+                android:layout_below="@+id/bio"
+                android:layout_marginTop="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="other profiles"
+                android:layout_below="@+id/bio"
+                android:layout_marginTop="40dp"
+                android:id="@+id/otherProfile"/>
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+
+</ScrollView>
