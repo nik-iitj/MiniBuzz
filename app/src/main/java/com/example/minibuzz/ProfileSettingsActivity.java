@@ -44,7 +44,7 @@ import java.util.Map;
 
 public class ProfileSettingsActivity extends AppCompatActivity {
     EditText name,des,details,profile;
-    Button save;
+    Button save,myProfile;
     TextView user;
     ImageView dp;
     Uri MainImgURI=null;
@@ -67,6 +67,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
         save=(Button)findViewById(R.id.save);
         user=(TextView)findViewById(R.id.txtTitle);
         dp=(ImageView)findViewById(R.id.profile_img);
+        myProfile=(Button)findViewById(R.id.myProfile);
 
 
 
@@ -171,6 +172,15 @@ public class ProfileSettingsActivity extends AppCompatActivity {
 
             }
         });
+
+        myProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),MyProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
