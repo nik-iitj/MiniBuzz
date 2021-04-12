@@ -7,14 +7,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +29,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -44,7 +40,7 @@ import java.util.Map;
 
 public class ProfileSettingsActivity extends AppCompatActivity {
     EditText name,des,details,profile;
-    Button save,myProfile;
+    Button save,myQueryFeed;
     TextView user;
     ImageView dp;
     Uri MainImgURI=null;
@@ -67,7 +63,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
         save=(Button)findViewById(R.id.save);
         user=(TextView)findViewById(R.id.txtTitle);
         dp=(ImageView)findViewById(R.id.profile_img);
-        myProfile=(Button)findViewById(R.id.myProfile);
+        myQueryFeed=(Button)findViewById(R.id.myQueryFeed);
 
 
 
@@ -173,10 +169,10 @@ public class ProfileSettingsActivity extends AppCompatActivity {
             }
         });
 
-        myProfile.setOnClickListener(new View.OnClickListener() {
+        myQueryFeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),MyProfileActivity.class);
+                Intent intent = new Intent(v.getContext(),RecyclerViewActivity.class);
                 startActivity(intent);
             }
         });

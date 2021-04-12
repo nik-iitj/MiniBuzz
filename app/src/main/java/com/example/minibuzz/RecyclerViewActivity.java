@@ -69,11 +69,11 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 return true;
 
             case R.id.my_account_btn:
-
+                sendToMyAccount() ;
                 return true;
 
 
-            case R.id.logOutBtn:
+            case R.id.logout_btn:
 
                 logOut();
                 return true;
@@ -83,6 +83,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 return false;
 
         }
+
+    }
+
+    private void sendToMyAccount() {
+
+        Intent myAccountIntent = new Intent(RecyclerViewActivity.this , MyProfileActivity.class);
+        startActivity((myAccountIntent));
 
     }
 

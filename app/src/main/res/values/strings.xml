@@ -5,7 +5,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="heyaa">Heyaa</string>
     <string name="profile_setting_text">Profile Settings</string>
-    <string name="my_account_text">My Acoount</string>
+    <string name="my_account_text">My Account</string>
     <string name="logout_text">Logout</string>
     <string name="query_text_hint">Add your Query</string>
     <string name="hey_user_hint">Hey user, Post Your Query</string>

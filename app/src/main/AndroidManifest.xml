@@ -15,12 +15,12 @@
         android:theme="@style/Theme.MiniBuzz">
         <activity android:name=".AddQueryActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
         <activity android:name=".TestActivity" />
         <activity android:name=".MyProfileActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity android:name=".TestActivity" />
         <activity
             android:name=".SignInActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -38,10 +38,11 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
+            android:theme="@style/Base.Theme.AppCompat"/>
         <activity
             android:name=".RecyclerViewActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
