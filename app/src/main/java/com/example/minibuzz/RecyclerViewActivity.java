@@ -2,6 +2,7 @@ package com.example.minibuzz;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -64,6 +65,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
             case R.id.profile_settings_btn:
 
+                sendToProfileSettings();
                 return true;
 
             case R.id.my_account_btn:
@@ -81,6 +83,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 return false;
 
         }
+
+    }
+
+    private void sendToProfileSettings() {
+
+        Intent profileSettingsIntent = new Intent(RecyclerViewActivity.this , ProfileSettingsActivity.class);
+        startActivity(profileSettingsIntent);
 
     }
 
