@@ -11,4 +11,5 @@
     <string name="hey_user_hint">Hey user, Post Your Query</string>
     <string name="post_button_hint">Post</string>
     <string name="image_links">Image Links</string>
+    <string name="del_account_str">Delete Account</string>
 </resources>

@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".TestActivity" />
         <activity android:name=".MyProfileActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true"/>
 
         <activity
             android:name=".SignInActivity"
