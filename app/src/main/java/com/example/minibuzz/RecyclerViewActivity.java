@@ -40,7 +40,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                // write
+                Intent intent = new Intent (RecyclerViewActivity.this,AddQueryActivity.class);
+                startActivity(intent);
 
             }
 
