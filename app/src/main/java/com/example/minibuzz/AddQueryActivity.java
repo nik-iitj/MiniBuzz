@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +51,7 @@ public class AddQueryActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     StorageReference storageReference;
     Uri img_upload_uri;
+    ProgressBar progressBar,progress;
 
 
 
@@ -71,6 +74,8 @@ public class AddQueryActivity extends AppCompatActivity {
         thumb=(ImageView)findViewById(R.id.uploadImg);
         storageReference= FirebaseStorage.getInstance().getReference();
         query=(EditText)findViewById(R.id.edit_des_text);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progress=(ProgressBar)findViewById(R.id.progressBar2);
 
         fileNameList=new ArrayList<>();
         fileDoneList=new ArrayList<>();
@@ -79,7 +84,7 @@ public class AddQueryActivity extends AppCompatActivity {
         uploadListAdapter= new UploadListAdapter(fileNameList,fileDoneList);
 
 
-
+        //progress.setVisibility(View.VISIBLE);
 
         upload.setLayoutManager(new LinearLayoutManager(this));
         upload.setHasFixedSize(true);
@@ -97,11 +102,13 @@ public class AddQueryActivity extends AppCompatActivity {
         attach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progress.setVisibility(View.VISIBLE);
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent,"Select Image"),RESULT_LOAD_IMAGE);
+                progress.setVisibility(View.GONE);
             }
         });
 
@@ -120,21 +127,26 @@ public class AddQueryActivity extends AppCompatActivity {
                 final String text=query.getText().toString();
 
                 if(!TextUtils.isEmpty(text)){
+                    progressBar.setVisibility(View.VISIBLE);
                     Map<String,Object>postMap = new HashMap<>();
 
                     postMap.put("Query",text);
                     postMap.put("Images",urls);
                     postMap.put("User_ID",firebaseAuth.getCurrentUser().getUid());
-                    postMap.put("TimeStamp", FieldValue.serverTimestamp());
+                    postMap.put("TimeStamp", FieldValue.serverTimestamp().toString());
+                    String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+                    postMap.put("Date_Time",mydate);
 
                     firebaseFirestore.collection("Posts").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(AddQueryActivity.this, "Uploading done", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                //Toast.makeText(AddQueryActivity.this, "Uploading done", Toast.LENGTH_SHORT).show();
                             }
 
                             else{
+                                progressBar.setVisibility(View.GONE);
                                 Toast.makeText(AddQueryActivity.this, "error in uploading", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -160,12 +172,11 @@ public class AddQueryActivity extends AppCompatActivity {
         if(requestCode==RESULT_LOAD_IMAGE && resultCode == RESULT_OK){
             if(data.getClipData()!=null){
 
-                //Toast.makeText(this, "Multiple files selected", Toast.LENGTH_SHORT).show();
                 int total = data.getClipData().getItemCount();
 
                 for(int i=0;i<total;i++){
                     Uri fileUri = data.getClipData().getItemAt(i).getUri();
-                    //thumb.setImageURI(fileUri);
+
                     String filename= getFilename(fileUri);
                     fileNameList.add(filename);
                     uploadListAdapter.notifyDataSetChanged();
@@ -175,6 +186,8 @@ public class AddQueryActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Toast.makeText(AddQueryActivity.this, "Done (Storage Reference)", Toast.LENGTH_SHORT).show();
+                            //progress.setVisibility(View.GONE);
+
                             fileToUpload.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
@@ -190,9 +203,12 @@ public class AddQueryActivity extends AppCompatActivity {
 
                 }
 
+
             }
 
             else if (data.getData()!=null){
+
+
                 Uri fileUri = data.getData();
                 String filename = getFilename(fileUri);
                 fileNameList.add(filename);
@@ -203,6 +219,7 @@ public class AddQueryActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Toast.makeText(AddQueryActivity.this, "Done (Storage Reference)", Toast.LENGTH_SHORT).show();
+                        //progress.setVisibility(View.GONE);
                         fileToUpload.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
@@ -215,6 +232,8 @@ public class AddQueryActivity extends AppCompatActivity {
                 });
 
             }
+
+
         }
     }
 
