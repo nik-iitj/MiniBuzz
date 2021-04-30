@@ -52,6 +52,8 @@ public class ProfileSettingsActivity extends AppCompatActivity {
     String user_id;
     Map<String,String> userMap= new HashMap<>();
 
+    Button reach;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +67,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
         dp=(ImageView)findViewById(R.id.profile_img);
         myQueryFeed=(Button)findViewById(R.id.myQueryFeed);
 
-
+        reach = (Button)findViewById(R.id.reachPost);
 
 
         firebaseFirestore=FirebaseFirestore.getInstance();
@@ -127,6 +129,8 @@ public class ProfileSettingsActivity extends AppCompatActivity {
             }
         });
 
+        
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,6 +180,16 @@ public class ProfileSettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        reach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),IndividualPost.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
     }
