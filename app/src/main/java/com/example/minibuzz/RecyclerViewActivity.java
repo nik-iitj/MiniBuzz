@@ -1,7 +1,9 @@
 package com.example.minibuzz;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -11,8 +13,17 @@ import android.view.MenuItem;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import android.content.Intent;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RecyclerViewActivity extends AppCompatActivity {
@@ -21,6 +32,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
 
     private FloatingActionButton addPostButton ;
+
+    private RecyclerView query_post_view ;
+
+    private List<QueryPost> Query_list ;
+
+    private FirebaseFirestore firebaseFirestore ;
+
+    private QueryRecyclerAdapter queryRecyclerAdapter ;
 
 
     @Override
@@ -35,6 +54,17 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("welcome User !!");
 
+
+        // ################################################
+
+
+        query_post_view = findViewById(R.id.query_post_view) ;
+        query_post_view.setLayoutManager(new LinearLayoutManager(RecyclerViewActivity.this));
+        query_post_view.setAdapter(queryRecyclerAdapter);
+
+
+        // ################################################
+
         addPostButton = findViewById(R.id.add_post_btn);
         addPostButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +77,31 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
 
         });
+
+
+        queryRecyclerAdapter = new QueryRecyclerAdapter(Query_list) ;
+
+        Query_list = new ArrayList<>() ;
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
+
+        firebaseFirestore.collection("Posts").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException error) {
+
+                for(DocumentChange doc: documentSnapshots.getDocumentChanges()  ) {
+
+                    if(doc.getType() == DocumentChange.Type.ADDED) {
+
+                        QueryPost QueryPost = doc.getDocument().toObject(QueryPost.class) ;
+                        Query_list.add(QueryPost) ;
+
+                        queryRecyclerAdapter.notifyDataSetChanged();
+                    }
+                }
+
+            }
+        }) ;
 
     }
 

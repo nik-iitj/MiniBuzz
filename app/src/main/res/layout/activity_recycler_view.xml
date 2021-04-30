@@ -28,6 +28,18 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/query_post_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_post_btn"
         android:layout_width="wrap_content"
@@ -39,6 +51,7 @@
         app:backgroundTint="@color/thistle">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
