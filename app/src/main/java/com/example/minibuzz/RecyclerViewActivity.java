@@ -24,6 +24,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 
 public class RecyclerViewActivity extends AppCompatActivity {
@@ -40,6 +41,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore ;
 
     private QueryRecyclerAdapter queryRecyclerAdapter ;
+    Inflater inflater;
 
 
     @Override
@@ -58,9 +60,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
         // ################################################
 
 
-        query_post_view = findViewById(R.id.query_post_view) ;
-        query_post_view.setLayoutManager(new LinearLayoutManager(RecyclerViewActivity.this));
-        query_post_view.setAdapter(queryRecyclerAdapter);
+
+
 
 
         // ################################################
@@ -79,9 +80,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
         });
 
 
+        Query_list = new ArrayList<>() ;
         queryRecyclerAdapter = new QueryRecyclerAdapter(Query_list) ;
 
-        Query_list = new ArrayList<>() ;
+        query_post_view = findViewById(R.id.query_post_view) ;
+        query_post_view.setLayoutManager(new LinearLayoutManager(RecyclerViewActivity.this));
+        query_post_view.setAdapter(queryRecyclerAdapter);
+
+
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -171,4 +177,5 @@ public class RecyclerViewActivity extends AppCompatActivity {
         finish() ;
 
     }
+
 }

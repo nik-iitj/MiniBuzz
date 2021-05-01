@@ -1,38 +1,29 @@
 package com.example.minibuzz;
 
 
-import java.util.ArrayList;
-
 public class QueryPost {
 
-    private String User_Id , Query ;
-
-   // public ArrayList Images ;
-
-    public QueryPost() {}
-
-    /*
-    public QueryPost(String user_Id, String query, ArrayList images) {
-        User_Id = user_Id;
-        Query = query;
-     //   Images = images;
-    }
-    */
+    private String User_Id , Query, Date_Time ;
 
 
 
-    public QueryPost(String user_Id, String query) {
-        User_Id = user_Id;
-        Query = query;
-        //   Images = images;
+    public QueryPost(){}
+
+    public QueryPost (String User_id, String Query, String Date_Time){
+
+        this.Date_Time=Date_Time;
+        this.User_Id=User_id;
+        this.Query=Query;
+
     }
 
-    public String getUser_Id() {
-        return User_Id;
+
+    public String getDate_Time() {
+        return Date_Time;
     }
 
-    public void setUser_Id(String user_Id) {
-        User_Id = user_Id;
+    public void setDate_Time(String date_Time) {
+        Date_Time = date_Time;
     }
 
     public String getQuery() {
@@ -43,16 +34,11 @@ public class QueryPost {
         Query = query;
     }
 
-    /*
-    public ArrayList getImages() {
-        return Images;
+    public String getUser_Id() {
+        return User_Id;
     }
 
-    public void setImages(ArrayList images) {
-        Images = images;
+    public void setUser_Id(String user_Id) {
+        User_Id = user_Id;
     }
-
-    */
-
-
 }

@@ -3,6 +3,7 @@ package com.example.minibuzz;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +26,7 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.query_list_item , parent , false) ;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.query_list_item ,parent, false) ;
 
         return new ViewHolder(view);
     }
@@ -41,14 +42,16 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
 
     @Override
     public int getItemCount() {
+
         return Query_list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        //private TextView descView;
         private View qView ;
 
-        private TextInputEditText queryView ;
+        private TextView queryView ;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,7 +61,7 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
 
         public void setQueryText( String queryText) {
 
-            queryView = qView.findViewById(R.id.query_text_view) ;
+            queryView = qView.findViewById(R.id.queryDesc) ;
             queryView.setText(queryText);
 
         }

@@ -1,112 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:background="#DCDCDC">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/main_query_post"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/query_user_img"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/profile"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#ffffff"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="35dp"
+                android:id="@+id/dp"
+                android:layout_marginStart="50dp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="45dp"
+                android:textSize="18sp"
+                android:layout_toEndOf="@+id/dp"
+                android:layout_toRightOf="@+id/dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:src="@mipmap/ic_launcher_round"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:hint="Username"
+                android:textStyle="bold"
+                android:id="@+id/userName"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp" />
 
-            </de.hdodenhof.circleimageview.CircleImageView>
-
-
-            <com.google.android.material.textfield.TextInputLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintStart_toEndOf="@+id/query_user_img"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/query_user_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:text="User Name"
-                    android:textStyle="bold">
-
-                </com.google.android.material.textfield.TextInputEditText>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <ImageView
-                android:id="@+id/query_img_view"
-                android:layout_width="401dp"
-                android:layout_height="208dp"
-                android:layout_marginTop="28dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/query_user_img"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_below="@+id/userName"
+                android:layout_centerHorizontal="true"
+                android:hint="timestamp"
+                android:textColor="#303030"
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/query_img_view">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/query_text_view"
-                    android:layout_width="389dp"
-                    android:layout_height="98dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:background="#C6C0D2"
-                    android:ems="20"
-                    android:fadeScrollbars="true"
-                    android:gravity="center"
-                    android:hint="Query"
-                    android:inputType="textMultiLine"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/query_img_view">
-
-                </com.google.android.material.textfield.TextInputEditText>
+                android:id="@+id/timStamp"
+                android:layout_toEndOf="@+id/dp"
+                android:layout_marginStart="10dp" />
 
 
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_below="@+id/timStamp"
+                android:layout_marginTop="30dp"
+                android:hint="Hii"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical"
+                android:padding="20dp"
+                android:id="@+id/queryDesc"
+                android:gravity="center_horizontal"
+                android:textSize="16sp"/>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
 
     </androidx.cardview.widget.CardView>
 
+
+
+
+
+
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
