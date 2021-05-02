@@ -67,7 +67,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
         dp=(ImageView)findViewById(R.id.profile_img);
         myQueryFeed=(Button)findViewById(R.id.myQueryFeed);
 
-        reach = (Button)findViewById(R.id.reachPost);
+
 
 
         firebaseFirestore=FirebaseFirestore.getInstance();
@@ -181,13 +181,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
             }
         });
 
-        reach.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),IndividualPost.class);
-                startActivity(intent);
-            }
-        });
+
 
 
 

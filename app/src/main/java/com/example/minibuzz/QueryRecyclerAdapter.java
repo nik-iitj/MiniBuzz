@@ -1,6 +1,7 @@
 package com.example.minibuzz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,20 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
         String user_id = Query_list.get(position).getUser_Id();
         String time = Query_list.get(position).getDate_Time();
 
+        firebaseFirestore.collection("Posts").document(Query_list.get(position).queryId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                DocumentSnapshot document = task.getResult();
+                List<String> list = (List<String>) document.get("Images");
+
+                if(!list.isEmpty()){
+                    holder.areImages();
+                }
+
+            }
+        });
+
 
 
         firebaseFirestore.collection("Users").document(Query_list.get(position).getUser_Id()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -77,6 +92,8 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
 
                 } else{
 
+                    Toast.makeText(holder.qView.getContext(), "Please Check your Internet Collection", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -85,9 +102,13 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
         holder.qView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               String k =Query_list.get(position).getUser_Id();
+               String k =Query_list.get(position).queryId;
 
-                Toast.makeText(holder.qView.getContext(), k, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(),IndividualPost.class);
+                intent.putExtra("id",k);
+                v.getContext().startActivity(intent);
+
+                //Toast.makeText(holder.qView.getContext(), k, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -107,6 +128,7 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
         CircleImageView dp;
 
         private TextView queryView ;
+        private TextView imgMessage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -144,7 +166,11 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
             username.setText(name);
 
 
+        }
 
+        public void areImages(){
+            imgMessage = (TextView)qView.findViewById(R.id.imgMessage);
+            imgMessage.setVisibility(View.VISIBLE);
 
         }
 

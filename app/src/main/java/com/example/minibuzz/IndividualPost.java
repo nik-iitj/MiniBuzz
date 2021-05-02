@@ -50,7 +50,10 @@ public class IndividualPost extends AppCompatActivity {
 
         content.setMovementMethod(new ScrollingMovementMethod());
 
-        firebaseFirestore.collection("Posts").document("RhOyJT2adTD7wHKxlz03").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        Bundle data = getIntent().getExtras();
+        String id = data.getString("id");
+
+        firebaseFirestore.collection("Posts").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){

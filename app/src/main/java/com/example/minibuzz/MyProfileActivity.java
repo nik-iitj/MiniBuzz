@@ -28,6 +28,8 @@ public class MyProfileActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth firebaseAuth;
 
+    //private QueryRecyclerAdapter queryRecyclerAdapter ;
+
     private MaterialToolbar profileToolbar ;
 
 

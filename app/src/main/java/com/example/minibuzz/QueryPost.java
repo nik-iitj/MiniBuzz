@@ -1,7 +1,7 @@
 package com.example.minibuzz;
 
 
-public class QueryPost {
+public class QueryPost extends queryId{
 
     private String User_ID , Query, Date_Time ;
 
