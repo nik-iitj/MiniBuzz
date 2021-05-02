@@ -109,11 +109,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     if(doc.getType() == DocumentChange.Type.ADDED) {
 
                         String queryId= doc.getDocument().getId();
-                        List<String> list = (List<String>) doc.getDocument().get("Images");
-
-                        //if(!list.isEmpty()){
-                            //imgMessage.setText("sfsfs");
-                        //}
 
                         QueryPost QueryPost = doc.getDocument().toObject(QueryPost.class).withId(queryId) ;
                         Query_list.add(QueryPost) ;
