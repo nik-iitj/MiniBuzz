@@ -2,24 +2,35 @@ package com.example.minibuzz;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.Console;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -28,6 +39,7 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdapter.ViewHolder> {
 
     FirebaseFirestore firebaseFirestore;
+    FirebaseAuth firebaseAuth;
 
 
 
@@ -44,13 +56,15 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.query_list_item ,parent, false) ;
         firebaseFirestore = FirebaseFirestore.getInstance();
-
+        firebaseAuth = FirebaseAuth.getInstance();
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        String query_id = Query_list.get(position).queryId;
 
         String query_data = Query_list.get(position).getQuery() ;
         holder.setQueryText(query_data);
@@ -112,6 +126,68 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
             }
         });
 
+        firebaseFirestore.collection("Posts/" + query_id + "/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(!value.isEmpty()){
+
+                    int count = value.size();
+                    holder.updateLikesCount(count);
+
+                } else{
+
+                    holder.updateLikesCount(0);
+
+
+                }
+            }
+        });
+
+
+
+
+        firebaseFirestore.collection("Posts/" + query_id + "/Likes").document(firebaseAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(value.exists()){
+                    holder.likeBtn.setImageDrawable(holder.qView.getContext().getDrawable(R.mipmap.red_like));
+                } else{
+                    holder.likeBtn.setImageDrawable(holder.qView.getContext().getDrawable(R.mipmap.grey_like));
+                }
+            }
+        });
+
+
+
+        holder.likeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                firebaseFirestore.collection("Posts/" + query_id + "/Likes").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(!task.getResult().exists()){
+
+                            Map<String,Object> likesMap = new HashMap<>();
+                            likesMap.put("timestamp", FieldValue.serverTimestamp());
+                            firebaseFirestore.collection("Posts/" + query_id + "/Likes").document(firebaseAuth.getCurrentUser().getUid()).set(likesMap);
+
+                        } else{
+                            firebaseFirestore.collection("Posts/" + query_id + "/Likes").document(firebaseAuth.getCurrentUser().getUid()).delete();
+                        }
+
+                    }
+                });
+
+
+
+                
+            }
+        });
+
     }
 
     @Override
@@ -121,6 +197,9 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private ImageView likeBtn;
+        private TextView likeCount;
 
         //private TextView descView;
         private View qView ;
@@ -134,6 +213,12 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
             super(itemView);
 
             qView = itemView ;
+
+            likeBtn=qView.findViewById(R.id.likeBtn);
+
+
+
+
         }
 
         public void setQueryText( String queryText) {
@@ -172,6 +257,14 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
             imgMessage = (TextView)qView.findViewById(R.id.imgMessage);
             imgMessage.setVisibility(View.VISIBLE);
 
+        }
+
+
+        public void updateLikesCount (int count){
+
+            likeCount = qView.findViewById(R.id.likesCount);
+
+            likeCount.setText(count + " Likes");
         }
 
 

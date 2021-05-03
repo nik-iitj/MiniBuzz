@@ -133,7 +133,7 @@ public class AddQueryActivity extends AppCompatActivity {
                     postMap.put("Query",text);
                     postMap.put("Images",urls);
                     postMap.put("User_ID",firebaseAuth.getCurrentUser().getUid());
-                    postMap.put("TimeStamp", FieldValue.serverTimestamp().toString());
+                    postMap.put("TimeStamp", FieldValue.serverTimestamp());
                     String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
                     postMap.put("Date_Time",mydate);
 
