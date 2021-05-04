@@ -1,8 +1,11 @@
 package com.example.minibuzz;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,16 +22,29 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyProfileActivity extends AppCompatActivity {
     ImageView dp;
     TextView username,bio,contact,other;
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth firebaseAuth;
+    private List<QueryPost> Query_list;
+
+    private QueryRecyclerAdapter queryRecyclerAdapter ;
 
     private MaterialToolbar profileToolbar ;
+
+    private RecyclerView user_post_query ;
 
 
     @Override
@@ -48,6 +64,14 @@ public class MyProfileActivity extends AppCompatActivity {
         other=(TextView)findViewById(R.id.otherProfile);
         firebaseFirestore=FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
+
+        Query_list = new ArrayList<>() ;
+        queryRecyclerAdapter = new QueryRecyclerAdapter(Query_list) ;
+
+        user_post_query = (RecyclerView)findViewById(R.id.ownRecyclerView);
+        user_post_query.setLayoutManager(new LinearLayoutManager(MyProfileActivity.this));
+        user_post_query.setAdapter(queryRecyclerAdapter);
+
 
 
 
@@ -74,6 +98,34 @@ public class MyProfileActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Query firstQuery = firebaseFirestore.collection("Posts").orderBy("TimeStamp", Query.Direction.DESCENDING);
+
+
+        firstQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException error) {
+
+                for(DocumentChange doc: documentSnapshots.getDocumentChanges()  ) {
+
+                    if(doc.getType() == DocumentChange.Type.ADDED) {
+
+                        if(doc.getDocument().getString("User_ID").equals(firebaseAuth.getCurrentUser().getUid())){
+                            String queryId= doc.getDocument().getId();
+
+                            QueryPost QueryPost = doc.getDocument().toObject(QueryPost.class).withId(queryId) ;
+                            Query_list.add(QueryPost) ;
+
+                            queryRecyclerAdapter.notifyDataSetChanged();
+
+                        }
+
+
+                    }
+                }
+
+            }
+        }) ;
 
 
 

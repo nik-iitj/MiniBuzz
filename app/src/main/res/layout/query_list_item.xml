@@ -19,7 +19,6 @@
             android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/dp"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="50dp"
@@ -28,6 +27,8 @@
                 android:src="@drawable/profile"
                 app:civ_border_color="#ffffff"
                 app:civ_border_width="2dp" />
+                android:id="@+id/dp"
+                android:layout_marginStart="30dp" />
 
             <TextView
                 android:id="@+id/userName"
@@ -37,45 +38,93 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="45dp"
+                android:textSize="18sp"
                 android:layout_toEndOf="@+id/dp"
                 android:layout_toRightOf="@+id/dp"
                 android:hint="Username"
                 android:textColor="@color/black"
-                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/timStamp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/userName"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toEndOf="@+id/dp"
-                android:layout_toRightOf="@+id/dp"
                 android:hint="timestamp"
                 android:textColor="#303030"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_toRightOf="@+id/dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/timStamp"
+                android:layout_toEndOf="@+id/dp"
+                android:layout_marginStart="10dp" />
 
 
             <TextView
-                android:id="@+id/queryDesc"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_below="@+id/timStamp"
                 android:layout_marginTop="30dp"
-                android:gravity="center_horizontal"
                 android:hint="Hii"
-                android:padding="20dp"
-                android:scrollbarStyle="insideOverlay"
-                android:scrollbars="vertical"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical"
+                android:padding="20dp"
+                android:id="@+id/queryDesc"
+                android:gravity="center_horizontal"
+                android:textSize="16sp"/>
+
+            <ImageView
+                android:id="@+id/likeBtn"
+                android:layout_width="37dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/queryDesc"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="2dp"
+                app:srcCompat="@mipmap/grey_like"
+                />
+
+            <TextView
+                android:id="@+id/imgMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="8dp"
+                android:text="Image/images attached!\n Tap to view"
+                android:textColor="#FF3300"
+                android:textSize="12sp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/queryDesc"
+                android:layout_marginTop="14dp"
+                android:layout_alignLeft="@+id/likeBtn"
+                android:layout_marginLeft="50dp"
+                android:text="0 Likes"
+                android:textSize="16sp"
+                android:layout_alignStart="@+id/likeBtn"
+                android:layout_marginStart="45dp"
+                android:id="@+id/likesCount"/>
 
 
         </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
 
 
     </androidx.cardview.widget.CardView>

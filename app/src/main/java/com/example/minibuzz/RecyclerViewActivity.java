@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,10 +18,12 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +44,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore ;
 
     private QueryRecyclerAdapter queryRecyclerAdapter ;
-    Inflater inflater;
+
 
 
     @Override
@@ -49,10 +52,17 @@ public class RecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
+
+
+
+
+
         mAuth = FirebaseAuth.getInstance();
 
         mainToolbar = (MaterialToolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolbar);
+
+
 
         getSupportActionBar().setTitle("welcome User !!");
 
@@ -91,7 +101,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        firebaseFirestore.collection("Posts").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        Query firstQuery = firebaseFirestore.collection("Posts").orderBy("TimeStamp", Query.Direction.DESCENDING);
+
+        firstQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException error) {
 
@@ -99,7 +111,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
                     if(doc.getType() == DocumentChange.Type.ADDED) {
 
-                        QueryPost QueryPost = doc.getDocument().toObject(QueryPost.class) ;
+                        String queryId= doc.getDocument().getId();
+
+                        QueryPost QueryPost = doc.getDocument().toObject(QueryPost.class).withId(queryId) ;
                         Query_list.add(QueryPost) ;
 
                         queryRecyclerAdapter.notifyDataSetChanged();
