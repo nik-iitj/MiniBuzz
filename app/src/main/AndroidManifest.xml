@@ -48,7 +48,8 @@
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".RecyclerViewActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="true"/>
     </application>
 
 </manifest>

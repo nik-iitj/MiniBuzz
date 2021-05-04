@@ -9,59 +9,69 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#D9CED6">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_margin="18dp"
-            android:background="@drawable/gradient_color"
-            android:padding="30dp">
+            android:layout_height="250dp">
+
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="180dp"
+                android:layout_height="53dp"
+                android:layout_alignBottom="@+id/profile_img"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/elevation2"
+                android:fontFamily="@font/harry"
+                android:includeFontPadding="false"
+                android:padding="10dp"
+                android:text="Hello MiniBuzz"
+                android:textColor="@color/white"
+                android:elevation="3dp"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true">
+
+            </TextView>
 
             <ImageView
                 android:id="@+id/profile_img"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@drawable/imageshadow"
                 android:src="@drawable/profile">
 
             </ImageView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:id="@+id/txtTitle"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@+id/profile_img"
-                android:fontFamily="@font/lsr"
-                android:includeFontPadding="false"
-                android:text="Hello MiniBuzz"
-                android:textColor="@color/black"
-                android:textSize="30sp">
-
-            </TextView>
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="15dp"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="12dp">
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:hint="FULL NAME">
+                android:layout_marginBottom="20dp"
+                android:hint="Full Name"
+                android:elevation="4dp"
+                android:background="@drawable/elevation_effect"
+                android:backgroundTint="#F6EEF0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/lavender"
+                    android:layout_height="43dp"
+                    android:paddingLeft="10dp"
                     android:id="@+id/txtName"
                     android:letterSpacing="0.3"
                     android:textSize="20dp">
@@ -73,15 +83,17 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-
-                android:hint="CONTACT DETAILS">
+                android:layout_marginBottom="20dp"
+                android:hint="Contact Details"
+                android:elevation="4dp"
+                android:background="@drawable/elevation_effect"
+                android:backgroundTint="#F6EEF0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="43dp"
+                    android:paddingLeft="10dp"
                     android:id="@+id/txtContact"
-                    android:background="@color/lavender"
                     android:letterSpacing="0.3"
                     android:textSize="20dp">
 
@@ -92,13 +104,16 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:hint="OTHER PROFILES">
+                android:layout_marginBottom="20dp"
+                android:hint="Other Profile"
+                android:elevation="4dp"
+                android:background="@drawable/elevation_effect"
+                android:backgroundTint="#F6EEF0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/lavender"
+                    android:layout_height="43dp"
+                    android:paddingLeft="10dp"
                     android:id="@+id/txtOther"
                     android:letterSpacing="0.3"
                     android:textSize="20dp">
@@ -110,13 +125,15 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:hint="WhaT'S iN YoUr MiNd">
+                android:layout_marginBottom="20dp"
+                android:hint="WhAt'S oN yoUr Mind"
+                android:elevation="4dp"
+                android:background="@drawable/elevation_effect"
+                android:backgroundTint="#F6EEF0">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/lavender"
                     android:id="@+id/txtDescription"
                     android:letterSpacing="0.3"
                     android:textSize="20dp"
@@ -132,8 +149,12 @@
                 android:id="@+id/save"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/black_overlay"
-                android:text="CHANGE IT !!">
+                android:background="@drawable/elevation_effect"
+                android:backgroundTint="@color/black"
+                android:text="CHANGE IT !!"
+                android:textColor="@color/white"
+                android:padding="20dp"
+                android:elevation="8dp">
 
             </Button>
 
