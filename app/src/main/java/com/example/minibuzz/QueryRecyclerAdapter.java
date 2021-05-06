@@ -106,7 +106,7 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
 
                 } else{
 
-                    Toast.makeText(holder.qView.getContext(), "Please Check your Internet Collection", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(holder.qView.getContext(), "Please Check your Internet Connection", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -137,6 +137,23 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
                 } else{
 
                     holder.updateLikesCount(0);
+
+
+                }
+            }
+        });
+
+        firebaseFirestore.collection("Posts/" + query_id + "/Comments").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(!value.isEmpty()){
+
+                    int count = value.size();
+                    holder.updateCommentsCount(count);
+
+                } else{
+
+                    holder.updateCommentsCount(0);
 
 
                 }
@@ -199,7 +216,7 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView likeBtn;
-        private TextView likeCount;
+        private TextView likeCount,commentCount;
 
         //private TextView descView;
         private View qView ;
@@ -265,6 +282,13 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
             likeCount = qView.findViewById(R.id.likesCount);
 
             likeCount.setText(count + " Likes");
+        }
+
+        public void updateCommentsCount (int Comment_count){
+
+            commentCount = qView.findViewById(R.id.commentCount);
+
+            commentCount.setText(Comment_count + " Comments");
         }
 
 

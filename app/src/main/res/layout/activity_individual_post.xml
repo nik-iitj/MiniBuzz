@@ -1,4 +1,5 @@
-<ScrollView android:layout_width="match_parent"
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
@@ -85,10 +86,51 @@
 
 
 
-
-
-
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Comments"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:shadowColor="@color/black"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/commentRecyclerView"
+            />
+
+
+
+            <EditText
+                android:id="@+id/txtComment"
+                android:layout_width="309dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
+                android:hint="Comment here ......." />
+
+        <ImageView
+            android:id="@+id/commentPost"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:outlineAmbientShadowColor="@color/black"
+            app:srcCompat="@android:drawable/ic_menu_send"
+            tools:targetApi="p" />
+
+
+
+
     </LinearLayout>
 
 
