@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileSettingsActivity">
+    tools:context=".ProfileSettingsActivity"
+    android:background="#D9CED6">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#D9CED6">
+        android:orientation="vertical">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="290dp">
 
 
             <TextView
@@ -29,12 +29,12 @@
                 android:background="@drawable/elevation2"
                 android:fontFamily="@font/harry"
                 android:includeFontPadding="false"
-                android:padding="10dp"
+                android:padding="4dp"
                 android:text="Hello MiniBuzz"
                 android:textColor="@color/white"
                 android:elevation="3dp"
                 android:textSize="30sp"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:layout_centerHorizontal="true">
 
             </TextView>
@@ -42,7 +42,7 @@
             <ImageView
                 android:id="@+id/profile_img"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="290dp"
                 android:background="@drawable/imageshadow"
                 android:src="@drawable/profile">
 
@@ -65,8 +65,7 @@
                 android:layout_marginBottom="20dp"
                 android:hint="Full Name"
                 android:elevation="4dp"
-                android:background="@drawable/elevation_effect"
-                android:backgroundTint="#F6EEF0">
+                android:background="@drawable/elevation_effect">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -86,8 +85,7 @@
                 android:layout_marginBottom="20dp"
                 android:hint="Contact Details"
                 android:elevation="4dp"
-                android:background="@drawable/elevation_effect"
-                android:backgroundTint="#F6EEF0">
+                android:background="@drawable/elevation_effect">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -107,8 +105,8 @@
                 android:layout_marginBottom="20dp"
                 android:hint="Other Profile"
                 android:elevation="4dp"
-                android:background="@drawable/elevation_effect"
-                android:backgroundTint="#F6EEF0">
+                android:background="@drawable/elevation_effect">
+
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -128,8 +126,7 @@
                 android:layout_marginBottom="20dp"
                 android:hint="WhAt'S oN yoUr Mind"
                 android:elevation="4dp"
-                android:background="@drawable/elevation_effect"
-                android:backgroundTint="#F6EEF0">
+                android:background="@drawable/elevation_effect">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -149,7 +146,7 @@
                 android:id="@+id/save"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/elevation_effect"
+                android:background="@drawable/button_elevation"
                 android:backgroundTint="@color/black"
                 android:text="CHANGE IT !!"
                 android:textColor="@color/white"

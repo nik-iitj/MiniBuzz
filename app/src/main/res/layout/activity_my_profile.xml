@@ -15,7 +15,7 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="70dp"
             android:background="#C6C0D2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

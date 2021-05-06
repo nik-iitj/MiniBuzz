@@ -11,7 +11,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liftOnScroll="true">
+        app:liftOnScroll="true"
+        android:elevation="10dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/main_toolbar"
@@ -20,7 +21,8 @@
             android:background="#D9CED6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="10dp">
 
         </com.google.android.material.appbar.MaterialToolbar>
 
