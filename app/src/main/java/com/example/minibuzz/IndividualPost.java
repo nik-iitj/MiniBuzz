@@ -29,6 +29,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
@@ -132,7 +133,8 @@ public class IndividualPost extends AppCompatActivity {
 
 
 
-        firebaseFirestore.collection("Posts/" + id + "/Comments").addSnapshotListener(IndividualPost.this,new EventListener<QuerySnapshot>() {
+
+        firebaseFirestore.collection("Posts/" + id + "/Comments").orderBy("Timestamp", Query.Direction.ASCENDING).addSnapshotListener(IndividualPost.this,new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
