@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +52,7 @@ public class IndividualPost extends AppCompatActivity {
     RecyclerView commentRecyclerView;
     EditText comment;
     ImageView commentPost;
+    ScrollView scrollView;
 
     CommentRecyclerAdapter commentRecyclerAdapter;
     private List<comments> Comment_list ;
@@ -68,6 +71,8 @@ public class IndividualPost extends AppCompatActivity {
 
         Bundle data = getIntent().getExtras();
         String id = data.getString("id");
+
+        scrollView = (ScrollView)findViewById(R.id.scrollview);
 
 
 
@@ -92,6 +97,28 @@ public class IndividualPost extends AppCompatActivity {
 
 
         Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                content.getParent().requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+
+        content.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                content.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+
+
+
+
 
         firebaseFirestore.collection("Posts").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
