@@ -66,6 +66,9 @@ public class IndividualPost extends AppCompatActivity {
         imageSlider = (ImageSlider)findViewById(R.id.image_slider);
         dp=(ImageView)findViewById(R.id.dp);
 
+        Bundle data = getIntent().getExtras();
+        String id = data.getString("id");
+
 
 
         commentRecyclerView=(RecyclerView)findViewById(R.id.commentRecyclerView);
@@ -73,7 +76,7 @@ public class IndividualPost extends AppCompatActivity {
         commentPost = (ImageView)findViewById(R.id.commentPost);
 
         Comment_list = new ArrayList<>() ;
-        commentRecyclerAdapter = new CommentRecyclerAdapter(Comment_list) ;
+        commentRecyclerAdapter = new CommentRecyclerAdapter(Comment_list,id) ;
 
 
         commentRecyclerView.setLayoutManager(new LinearLayoutManager(IndividualPost.this));
@@ -87,8 +90,7 @@ public class IndividualPost extends AppCompatActivity {
 
         content.setMovementMethod(new ScrollingMovementMethod());
 
-        Bundle data = getIntent().getExtras();
-        String id = data.getString("id");
+
         Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
 
         firebaseFirestore.collection("Posts").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

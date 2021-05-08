@@ -1,5 +1,7 @@
 package com.example.minibuzz;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,14 +28,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecyclerAdapter.ViewHolder> {
 
+    private final String id;
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth firebaseAuth;
 
     public List<comments> Comment_list ;
 
-    public CommentRecyclerAdapter( List<comments> Comment_list) {
+    public CommentRecyclerAdapter(List<comments> Comment_list, String id) {
 
         this.Comment_list = Comment_list ;
+        this.id = id;
     }
 
     @NonNull
@@ -79,6 +83,53 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
                     Toast.makeText(holder.cView.getContext(), "Please Check your Internet Connection", Toast.LENGTH_SHORT).show();
 
                 }
+            }
+        });
+
+
+        holder.cView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+
+                builder.setTitle("Delete");
+                builder.setMessage("Are you sure?");
+
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        String userID = Comment_list.get(position).getUser_id();
+                        if(userID.equals(firebaseAuth.getCurrentUser().getUid())){
+
+                            firebaseFirestore.collection("Posts/" + id + "/Comments" ).document(Comment_list.get(position).commentId).delete();
+                            Toast.makeText(holder.cView.getContext(), "Comment deleted :) Please refresh...", Toast.LENGTH_LONG).show();
+
+
+                        }else {
+
+                            Toast.makeText(holder.cView.getContext(), "You can't delete other people comments :|", Toast.LENGTH_SHORT).show();
+                        }
+
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+                return false;
             }
         });
 
