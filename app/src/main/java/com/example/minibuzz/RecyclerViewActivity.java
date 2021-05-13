@@ -117,6 +117,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
                         Query_list.add(QueryPost) ;
 
                         queryRecyclerAdapter.notifyDataSetChanged();
+
+
                     }
                 }
 
