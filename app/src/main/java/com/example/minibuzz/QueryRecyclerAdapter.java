@@ -212,61 +212,6 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
             }
         });
 
-//        String myQueryId = Query_list.get(position).queryId;
-//
-//        firebaseFirestore.collection("Posts").document(myQueryId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-//
-//
-//                ArrayList<String> list = (ArrayList<String>) value.get("Images");
-//
-//                    if(!list.isEmpty()){
-//                        holder.areImages();
-//                    }
-//
-//
-//            }
-//        });
-
-//        firebaseFirestore.collection("Posts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if(task.isSuccessful()){
-//                    for(QueryDocumentSnapshot doc : task.getResult()){
-//                       firebaseFirestore.collection("Posts").document(doc.getId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                           @Override
-//                           public void onComplete(@NonNull Task<DocumentSnapshot> task2) {
-//                                DocumentSnapshot document = task2.getResult();
-//                                List<String> list = (List<String>) document.get("Images");
-//                                  if(!list.isEmpty()){
-//                                    holder.areImages();
-//                                }
-//
-//                           }
-//                       });
-//                    }
-//                }
-//            }
-//        });
-
-//        firebaseFirestore.collection("Posts").document("s5A4P7QrBiBJkYEGASJo").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//
-//                DocumentSnapshot document = task.getResult();
-//                //List<String> list = (List<String>) document.get("Images");
-//
-//
-//                if(list.isEmpty()){
-//                    Toast.makeText(holder.qView.getContext(), "List is empty", Toast.LENGTH_SHORT).show();
-//                }
-//
-//                //Toast.makeText(holder.qView.getContext(), String.valueOf(list.size()), Toast.LENGTH_LONG).show();
-//
-//
-//            }
-//        });
 
 
 

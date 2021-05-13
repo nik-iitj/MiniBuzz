@@ -147,7 +147,9 @@ public class AddQueryActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 progressBar.setVisibility(View.GONE);
                                 notification();
-                                //Toast.makeText(AddQueryActivity.this, "Uploading done", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(v.getContext(),RecyclerViewActivity.class);
+                                startActivity(intent);
+                                
                             }
 
                             else{
