@@ -284,8 +284,8 @@ public class AddQueryActivity extends AppCompatActivity {
             manager.createNotificationChannel(channel);
 
         }
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"n").setContentTitle("MiniBuzz").setSmallIcon(R.mipmap.red_like).setAutoCancel(true)
-            .setContentText("New Query!! Go have a look!!");
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"n").setContentTitle("MiniBuzz").setSmallIcon(R.drawable.appicon3).setAutoCancel(true)
+            .setContentText("Your query is posted :) My profile contains all your feeds. ");
 
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
         managerCompat.notify(999,builder.build());

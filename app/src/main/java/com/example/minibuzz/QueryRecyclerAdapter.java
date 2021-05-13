@@ -103,6 +103,25 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
             }
         });
 
+        holder.dp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),UserProfile.class);
+                intent.putExtra("user_id",user_id);
+                v.getContext().startActivity(intent);
+            }
+        });
+        holder.username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),UserProfile.class);
+                intent.putExtra("user_id",user_id);
+                v.getContext().startActivity(intent);
+            }
+        });
+
+
+
 
         holder.qView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -242,6 +261,8 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
             qView = itemView ;
 
             likeBtn=qView.findViewById(R.id.likeBtn);
+            username = (TextView)qView.findViewById(R.id.userName);
+            dp = (CircleImageView)qView.findViewById(R.id.dp);
 
 
 
