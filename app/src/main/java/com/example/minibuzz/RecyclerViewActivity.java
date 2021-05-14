@@ -11,10 +11,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -55,7 +58,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
 
 
-
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -64,8 +67,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
 
 
-        getSupportActionBar().setTitle("welcome User !!");
-
 
         // ################################################
 
@@ -75,6 +76,29 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
 
         // ################################################
+
+        firebaseFirestore.collection("Users").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+
+                    String name = task.getResult().getString("name");
+
+                    getSupportActionBar().setTitle("Welcome " + name + " !");
+
+
+
+
+
+                }
+
+
+
+            }
+        });
+
+
+
 
         addPostButton = findViewById(R.id.add_post_btn);
         addPostButton.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +141,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
                         Query_list.add(QueryPost) ;
 
                         queryRecyclerAdapter.notifyDataSetChanged();
+
+
                     }
                 }
 

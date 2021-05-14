@@ -30,7 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class SignInActivity extends AppCompatActivity {
-    TextView txtTitle;
+
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN=1;
     SignInButton btn;
@@ -61,14 +61,7 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    /* @Override
-   protected void onStart() {
-        super.onStart();
-        if(mAuth!=null) {
-            FirebaseUser user = mAuth.getCurrentUser();
-            updateUI(user);
-        }
-    }*/
+
     @Override
     public void onStart() {
         super.onStart();
@@ -87,7 +80,7 @@ public class SignInActivity extends AppCompatActivity {
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
 
             startActivityForResult(signInIntent, RC_SIGN_IN);
-            Toast.makeText(SignInActivity.this, "intent opening", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -118,7 +111,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(SignInActivity.this, ".....", Toast.LENGTH_SHORT).show();
+
                     FirebaseUser user= mAuth.getCurrentUser();
                     updateUI(user);
             }
@@ -136,9 +129,8 @@ public class SignInActivity extends AppCompatActivity {
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
 
             if (account != null) {
-                Intent intent = new Intent(this, ProfileSettingsActivity.class);
-                intent.putExtra("data", account);
-                Toast.makeText(SignInActivity.this, "Here...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, RecyclerViewActivity.class);
+
                 startActivity(intent);
             }
         }

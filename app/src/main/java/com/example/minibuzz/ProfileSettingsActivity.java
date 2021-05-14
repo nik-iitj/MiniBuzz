@@ -52,7 +52,6 @@ public class ProfileSettingsActivity extends AppCompatActivity {
     String user_id;
     Map<String,String> userMap= new HashMap<>();
 
-    Button reach;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
         save=(Button)findViewById(R.id.save);
         user=(TextView)findViewById(R.id.txtTitle);
         dp=(ImageView)findViewById(R.id.profile_img);
-        myQueryFeed=(Button)findViewById(R.id.myQueryFeed);
+
 
 
 
@@ -145,6 +144,11 @@ public class ProfileSettingsActivity extends AppCompatActivity {
                     firebaseFirestore.collection("Users").document(user_id).update("Other_profile", profile.getText().toString());
                     firebaseFirestore.collection("Users").document(user_id).update("contact_details", details.getText().toString());
 
+                    Toast.makeText(ProfileSettingsActivity.this, "Profile update Successful", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(v.getContext(),RecyclerViewActivity.class);
+                    startActivity(intent);
+
 
 
                 } else {
@@ -173,13 +177,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
             }
         });
 
-        myQueryFeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),RecyclerViewActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
 
 

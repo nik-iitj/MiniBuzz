@@ -57,6 +57,8 @@ public class MyProfileActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Your Profile !!");
 
+
+
         dp=(ImageView)findViewById(R.id.profilePic);
         username=(TextView)findViewById(R.id.name);
         bio=(TextView)findViewById(R.id.bio);
@@ -79,6 +81,7 @@ public class MyProfileActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
+
                     username.setText(task.getResult().getString("name"));
                     bio.setText("' "+task.getResult().getString("Bio")+" '");
                     contact.setText(task.getResult().getString("contact_details"));

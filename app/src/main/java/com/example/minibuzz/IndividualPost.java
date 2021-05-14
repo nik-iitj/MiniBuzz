@@ -6,17 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,6 +55,7 @@ public class IndividualPost extends AppCompatActivity {
     RecyclerView commentRecyclerView;
     EditText comment;
     ImageView commentPost;
+    ScrollView scrollView;
 
     CommentRecyclerAdapter commentRecyclerAdapter;
     private List<comments> Comment_list ;
@@ -66,6 +72,13 @@ public class IndividualPost extends AppCompatActivity {
         imageSlider = (ImageSlider)findViewById(R.id.image_slider);
         dp=(ImageView)findViewById(R.id.dp);
 
+        Bundle data = getIntent().getExtras();
+        String id = data.getString("id");
+
+        scrollView = (ScrollView)findViewById(R.id.scrollview);
+
+
+
 
 
         commentRecyclerView=(RecyclerView)findViewById(R.id.commentRecyclerView);
@@ -73,7 +86,7 @@ public class IndividualPost extends AppCompatActivity {
         commentPost = (ImageView)findViewById(R.id.commentPost);
 
         Comment_list = new ArrayList<>() ;
-        commentRecyclerAdapter = new CommentRecyclerAdapter(Comment_list) ;
+        commentRecyclerAdapter = new CommentRecyclerAdapter(Comment_list,id) ;
 
 
         commentRecyclerView.setLayoutManager(new LinearLayoutManager(IndividualPost.this));
@@ -87,9 +100,30 @@ public class IndividualPost extends AppCompatActivity {
 
         content.setMovementMethod(new ScrollingMovementMethod());
 
-        Bundle data = getIntent().getExtras();
-        String id = data.getString("id");
+
         Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                content.getParent().requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        });
+
+        content.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                content.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+
+
+
+
 
         firebaseFirestore.collection("Posts").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -120,6 +154,15 @@ public class IndividualPost extends AppCompatActivity {
                     imageSlider.stopSliding();
                     imageSlider.setImageList(imageList);
 
+                    imageSlider.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onItemSelected(int i) {
+
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(list.get(i)));
+                            startActivity(browserIntent);
+                        }
+                    });
+
 
 
                 }
@@ -130,6 +173,9 @@ public class IndividualPost extends AppCompatActivity {
                 }
             }
         });
+
+
+
 
 
 

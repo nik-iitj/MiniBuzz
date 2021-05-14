@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -142,7 +146,10 @@ public class AddQueryActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<DocumentReference> task) {
                             if(task.isSuccessful()){
                                 progressBar.setVisibility(View.GONE);
-                                //Toast.makeText(AddQueryActivity.this, "Uploading done", Toast.LENGTH_SHORT).show();
+                                notification();
+                                Intent intent = new Intent(v.getContext(),RecyclerViewActivity.class);
+                                startActivity(intent);
+                                
                             }
 
                             else{
@@ -265,6 +272,23 @@ public class AddQueryActivity extends AppCompatActivity {
         }
         return result;
 
+
+    }
+
+
+    private void notification(){
+        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("n","n", NotificationManager.IMPORTANCE_DEFAULT);
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+
+        }
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"n").setContentTitle("MiniBuzz").setSmallIcon(R.drawable.appicon3).setAutoCancel(true)
+            .setContentText("Your query is posted :) My profile contains all your feeds. ");
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(999,builder.build());
 
     }
 
