@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.MotionEvent;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -73,6 +76,8 @@ public class IndividualPost extends AppCompatActivity {
         String id = data.getString("id");
 
         scrollView = (ScrollView)findViewById(R.id.scrollview);
+
+
 
 
 
@@ -149,6 +154,15 @@ public class IndividualPost extends AppCompatActivity {
                     imageSlider.stopSliding();
                     imageSlider.setImageList(imageList);
 
+                    imageSlider.setItemClickListener(new ItemClickListener() {
+                        @Override
+                        public void onItemSelected(int i) {
+
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(list.get(i)));
+                            startActivity(browserIntent);
+                        }
+                    });
+
 
 
                 }
@@ -159,6 +173,9 @@ public class IndividualPost extends AppCompatActivity {
                 }
             }
         });
+
+
+
 
 
 
