@@ -70,7 +70,7 @@ public class SignInActivity extends AppCompatActivity {
             updateUI(currentUser);
         }
         else{
-            //Toast.makeText(SignInActivity.this, "null null", Toast.LENGTH_SHORT).show();
+
             updateUI(null);
         }
     }
