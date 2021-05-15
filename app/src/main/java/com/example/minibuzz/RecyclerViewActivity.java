@@ -11,6 +11,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -27,6 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +42,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
     private MaterialToolbar mainToolbar ;
     private FirebaseAuth mAuth ;
+
+    GoogleSignInClient mGoogleSignInClient;
 
     private FloatingActionButton addPostButton ;
 
@@ -71,7 +78,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
         // ################################################
 
 
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
 
 
@@ -81,8 +93,16 @@ public class RecyclerViewActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
+                    GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
 
                     String name = task.getResult().getString("name");
+
+                    if(name==null){
+                        Toast.makeText(RecyclerViewActivity.this, "Please set up your account", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RecyclerViewActivity.this,ProfileSettingsActivity.class);
+                        startActivity(intent);
+                        name = account.getDisplayName();
+                    }
 
                     getSupportActionBar().setTitle("Welcome " + name + " !");
 
@@ -212,7 +232,19 @@ public class RecyclerViewActivity extends AppCompatActivity {
     private void logOut() {
 
         mAuth.signOut();
-        sendToSignIn();
+        //sendToSignIn();
+
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(RecyclerViewActivity.this, "Glad you visited :)", Toast.LENGTH_SHORT).show();
+                sendToSignIn();
+            }
+        });
+
+
+
+
 
     }
 

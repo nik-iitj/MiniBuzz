@@ -84,7 +84,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
 
                 if(task.isSuccessful()){
                     if(task.getResult().exists()){ // if data exists
-                        Toast.makeText(ProfileSettingsActivity.this, "there", Toast.LENGTH_SHORT).show();
+
                         user.setText("Hello "+ task.getResult().getString("name"));
                         name.setText(task.getResult().getString("name"));
                         des.setText(task.getResult().getString("Bio"));
@@ -103,7 +103,7 @@ public class ProfileSettingsActivity extends AppCompatActivity {
 
 
                     } else {
-                        Toast.makeText(ProfileSettingsActivity.this, "Not there", Toast.LENGTH_SHORT).show();
+
                         userMap.put("name",account.getDisplayName());
                         userMap.put("Bio","Hi there :)");
                         userMap.put("Other_profile","Not Provided");

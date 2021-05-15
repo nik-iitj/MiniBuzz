@@ -17,11 +17,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthCredential;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -39,6 +47,10 @@ public class MyProfileActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth firebaseAuth;
     private List<QueryPost> Query_list;
+
+    private FirebaseAuth mAuth ;
+
+    GoogleSignInClient mGoogleSignInClient;
 
     private QueryRecyclerAdapter queryRecyclerAdapter ;
 
@@ -73,6 +85,14 @@ public class MyProfileActivity extends AppCompatActivity {
         user_post_query = (RecyclerView)findViewById(R.id.ownRecyclerView);
         user_post_query.setLayoutManager(new LinearLayoutManager(MyProfileActivity.this));
         user_post_query.setAdapter(queryRecyclerAdapter);
+
+        mAuth = FirebaseAuth.getInstance();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
 
 
@@ -180,23 +200,57 @@ public class MyProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                firebaseAuth.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                AuthCredential credential = (GoogleAuthCredential) GoogleAuthProvider.getCredential(account.getIdToken(),null);
+
+                user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
 
-                        if(task.isSuccessful()){
-                            Toast.makeText(MyProfileActivity.this , "Account Deleted Successfully" , Toast.LENGTH_LONG ).show();
+                                if(task.isSuccessful()){
+                                    Toast.makeText(MyProfileActivity.this, "Account deleted successfully", Toast.LENGTH_SHORT).show();
+                                    mAuth.signOut();
+                                    //sendToSignIn();
 
-                            Intent deleteIntent = new Intent( MyProfileActivity.this , SignInActivity.class);
-                            deleteIntent.addFlags(deleteIntent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(deleteIntent);
-                        }
-                        else {
-                            Toast.makeText(MyProfileActivity.this , task.getException().getMessage() , Toast.LENGTH_LONG ).show();
-                        }
+                                    mGoogleSignInClient.signOut();
+                                    Intent deleteIntent = new Intent( MyProfileActivity.this , SignInActivity.class);
+                                    deleteIntent.addFlags(deleteIntent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(deleteIntent);
+                                } else{
+                                    Toast.makeText(MyProfileActivity.this , task.getException().getMessage() , Toast.LENGTH_LONG ).show();
 
+                                }
+
+                            }
+                        });
                     }
                 });
+
+
+
+//                firebaseAuth.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//
+//                        if(task.isSuccessful()){
+//                            Toast.makeText(MyProfileActivity.this , "Account Deleted Successfully" , Toast.LENGTH_LONG ).show();
+//
+//                            Intent deleteIntent = new Intent( MyProfileActivity.this , SignInActivity.class);
+//                            deleteIntent.addFlags(deleteIntent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            startActivity(deleteIntent);
+//                        }
+//                        else {
+//                            Toast.makeText(MyProfileActivity.this , task.getException().getMessage() , Toast.LENGTH_LONG ).show();
+//                        }
+//
+//                    }
+//                });
 
             }
         });
