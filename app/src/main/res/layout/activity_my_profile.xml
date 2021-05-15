@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        android:background="#B9B7BD"
+        android:background="#000000"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
@@ -47,8 +47,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#D9CED6"
-                android:elevation="5dp">
+                android:background="#ffffff"
+                android:elevation="2dp"
+                android:padding="2dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/profilePic"
@@ -139,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:text="Your Posts"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/black"
+                android:textColor="#D9CED6"
                 android:textSize="20sp"
                 android:textAllCaps="true"
                 android:textAlignment="center"
