@@ -11,13 +11,16 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liftOnScroll="true">
+        app:liftOnScroll="true"
+        app:elevation="0dp"
+        android:elevation="20dp"
+        android:translationZ="20dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#C6C0D2"
+            android:layout_height="70dp"
+            android:background="#D4F1F4"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
+        android:background="#B9B7BD"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
@@ -51,7 +55,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#E2E0DF">
+                android:background="#D9CED6"
+                android:elevation="5dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/profilePic"
@@ -72,13 +77,14 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/harry"
                     android:hint="Hello"
+                    android:gravity="center"
                     android:shadowColor="@color/black"
                     android:shadowDx="2"
                     android:shadowDy="5"
                     android:shadowRadius="5"
                     android:textColor="@color/black"
                     android:textSize="60sp"
-
+                    android:elevation="5dp"
                     />
 
                 <TextView
@@ -89,22 +95,25 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
                     android:hint="nikhil@iitj.acc.in"
-                    android:textSize="15sp" />
+                    android:fontFamily="@font/fre"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/bio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/contact"
+                    android:layout_below="@+id/otherProfile"
                     android:layout_centerHorizontal="true"
-
                     android:layout_marginTop="20dp"
                     android:background="@drawable/round_corner"
-                    android:hint="Bio"
+                    android:hint="Their Bio"
+                    android:gravity="center"
                     android:padding="20dp"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:fontFamily="@font/fre"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -114,20 +123,26 @@
                     android:layout_marginLeft="5dp"
                     android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/bsr"
-                    android:text="More ways to reach : "
-                    android:layout_marginStart="5dp" />
+                    android:fontFamily="@font/harry"
+                    android:text="Why don't you Ask"
+                    android:layout_marginStart="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/otherProfile"
                     android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/bio"
-                    android:layout_marginTop="40dp"
+                    android:layout_below="@+id/contact"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:hint="other profiles" />
+                    android:hint="other profiles"
+                    android:textStyle="italic"
+                    android:fontFamily="@font/fre"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"/>
 
 
 

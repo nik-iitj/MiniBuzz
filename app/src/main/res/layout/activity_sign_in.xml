@@ -6,34 +6,38 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/pic1"
+        android:src="@drawable/splash_screen"
         android:scaleType="centerCrop"
         />
+
     <com.google.android.gms.common.SignInButton
+        android:id="@+id/signInBtn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txtTitle"
-        android:layout_marginTop="180dp"
-        android:id="@+id/signInBtn"
-        android:outlineAmbientShadowColor="@color/white"
-        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
 
-        />
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="142dp"
+        android:elevation="5dp"
+        android:outlineAmbientShadowColor="@color/white" />
 
     <TextView
+        android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lsr"
-        android:textSize="80sp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:id="@+id/txtTitle"
+        android:layout_marginTop="90dp"
+        android:elevation="5dp"
+        android:fontFamily="@font/harry"
+        android:gravity="center"
+        android:text="Why don'y You Ask !!"
         android:textColor="@color/white"
-        android:text="MiniBuzz..."
 
-        />
+        android:textSize="40sp" />
 
 
 

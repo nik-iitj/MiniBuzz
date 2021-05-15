@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignWithParentIfMissing="false"
-    android:layout_margin="5dp"
-    android:background="@color/white"
+    android:layout_margin="0dp"
+    android:background="#D9CED6"
     tools:context=".AddQueryActivity">
 
     <Button
@@ -14,9 +14,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:background="#C6C0D2"
+        android:background="@drawable/button_elevation"
+        android:backgroundTint="@color/black"
         android:text="@string/post_button_hint"
-        app:backgroundTint="#C6C0D2"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -31,7 +32,8 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:background="#C6C0D2"
+        android:background="@drawable/elevation_effect"
+        android:elevation="4dp"
         android:gravity="center"
         android:hint="@string/hey_user_hint"
         android:textSize="18sp"
@@ -64,14 +66,16 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:elevation="6dp"
+                android:background="@drawable/elevation_effect">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_des_text"
                     android:layout_width="match_parent"
                     android:layout_height="255dp"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:background="#C6C0D2"
+                    android:background="#ffffff"
                     android:ems="20"
                     android:fadeScrollbars="true"
                     android:gravity="center"

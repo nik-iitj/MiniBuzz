@@ -10,13 +10,16 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liftOnScroll="true">
+        app:liftOnScroll="true"
+        app:elevation="0dp"
+        android:elevation="20dp"
+        android:translationZ="20dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#C6C0D2"
+            android:background="#D4F1F4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -31,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
+        android:background="#B9B7BD"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
@@ -43,7 +47,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#E2E0DF">
+                android:background="#D9CED6"
+                android:elevation="5dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/profilePic"
@@ -70,8 +75,8 @@
                     android:shadowRadius="5"
                     android:textColor="@color/black"
                     android:textSize="60sp"
-
-                    />
+                    android:elevation="5dp"
+                    android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/contact"
@@ -81,22 +86,25 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
                     android:hint="nikhil@iitj.acc.in"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:fontFamily="@font/fre"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/bio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/contact"
+                    android:layout_below="@+id/otherProfile"
                     android:layout_centerHorizontal="true"
-
+                    android:fontFamily="@font/fre"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/round_corner"
-                    android:hint="Bio"
+                    android:hint="Your Bio"
+                    android:gravity="center"
                     android:padding="20dp"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -104,16 +112,22 @@
                     android:layout_below="@+id/bio"
                     android:layout_marginTop="16dp"
                     android:layout_marginLeft="5dp"
-                    android:text="More ways to reach :)" />
+                    android:text="Why don't you Ask !!"
+                    android:fontFamily="@font/harry"
+                    android:layout_centerHorizontal="true"/>
 
                 <TextView
                     android:id="@+id/otherProfile"
                     android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/bio"
-                    android:layout_marginTop="40dp"
-                    android:hint="other profiles" />
+                    android:layout_below="@+id/contact"
+                    android:layout_marginTop="10dp"
+                    android:hint="other profiles"
+                    android:textStyle="italic"
+                    android:fontFamily="@font/fre"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true" />
 
 
 

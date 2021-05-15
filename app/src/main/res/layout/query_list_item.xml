@@ -3,14 +3,14 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#B5B3CA">
+    android:background="#B9B7BD">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="365dp"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="#F6EEF0"
-        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="#ffffff"
+        app:cardCornerRadius="6dp"
         app:cardElevation="5dp"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
@@ -95,8 +95,10 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="Image/images attached!\n Tap to view"
-                android:textColor="#FF3300"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="View attached Images"
+                android:textColor="#DB1F48"
                 android:textSize="12sp"
                 android:visibility="invisible" />
 
@@ -114,27 +116,28 @@
                 android:textSize="16sp" />
 
             <ImageView
+                android:id="@+id/imgComment"
                 android:layout_width="37dp"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/comment"
-                android:layout_toRightOf="@id/likesCount"
-                android:layout_marginLeft="140dp"
                 android:layout_below="@+id/queryDesc"
-                android:id="@+id/imgComment"
                 android:layout_marginStart="140dp"
-                android:layout_toEndOf="@id/likesCount" />
+                android:layout_marginLeft="140dp"
+                android:layout_toEndOf="@id/likesCount"
+                android:layout_toRightOf="@id/likesCount"
+                android:src="@mipmap/comment" />
+
             <TextView
-                android:textSize="16sp"
+                android:id="@+id/commentCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/imgComment"
                 android:layout_below="@+id/queryDesc"
-                android:text="0 Comments"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="4dp"
-                android:layout_toEndOf="@id/imgComment"
                 android:layout_marginStart="6dp"
-                android:id="@+id/commentCount"/>
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/imgComment"
+                android:layout_toRightOf="@id/imgComment"
+                android:text="0 Comments"
+                android:textSize="16sp" />
 
 
         </RelativeLayout>

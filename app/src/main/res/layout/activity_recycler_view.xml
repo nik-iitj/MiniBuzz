@@ -12,17 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liftOnScroll="true"
-        android:elevation="10dp">
+        app:elevation="0dp"
+        android:elevation="20dp"
+        android:translationZ="20dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#D9CED6"
+            android:background="#D4F1F4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:elevation="10dp">
+            android:elevation="50dp">
 
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -50,7 +52,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
         android:src="@drawable/add_post_icon"
-        app:backgroundTint="#D9CED6">
+        app:backgroundTint="#D4F1F4">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
