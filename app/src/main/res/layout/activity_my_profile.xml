@@ -144,7 +144,7 @@
                 android:textSize="20sp"
                 android:textAllCaps="true"
                 android:textAlignment="center"
-                android:fontFamily="@font/fre"
+                android:fontFamily="@font/harry"
                 android:gravity="center_horizontal" />
 
             <androidx.recyclerview.widget.RecyclerView

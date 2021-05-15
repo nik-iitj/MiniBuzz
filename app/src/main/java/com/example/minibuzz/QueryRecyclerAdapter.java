@@ -312,14 +312,14 @@ public class QueryRecyclerAdapter extends RecyclerView.Adapter<QueryRecyclerAdap
 
             likeCount = qView.findViewById(R.id.likesCount);
 
-            likeCount.setText(count + " Likes");
+            likeCount.setText(count + "");
         }
 
         public void updateCommentsCount (int Comment_count){
 
             commentCount = qView.findViewById(R.id.commentCount);
 
-            commentCount.setText(Comment_count + " Comments");
+            commentCount.setText(Comment_count + "");
         }
 
 

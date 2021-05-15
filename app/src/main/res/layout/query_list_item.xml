@@ -78,10 +78,10 @@
 
             <ImageView
                 android:id="@+id/likeBtn"
-                android:layout_width="37dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/queryDesc"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginBottom="2dp"
                 app:srcCompat="@mipmap/grey_like" />
 
@@ -109,19 +109,19 @@
                 android:layout_below="@+id/queryDesc"
                 android:layout_alignStart="@+id/likeBtn"
                 android:layout_alignLeft="@+id/likeBtn"
-                android:layout_marginStart="45dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="14dp"
-                android:text="0 Likes"
-                android:textSize="16sp" />
+                android:layout_marginTop="10dp"
+                android:text="0"
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/imgComment"
-                android:layout_width="37dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/queryDesc"
-                android:layout_marginStart="140dp"
-                android:layout_marginLeft="140dp"
+                android:layout_marginStart="210dp"
+                android:layout_marginLeft="210dp"
                 android:layout_toEndOf="@id/likesCount"
                 android:layout_toRightOf="@id/likesCount"
                 android:src="@mipmap/comment" />
@@ -134,10 +134,10 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
+                android:text="0"
                 android:layout_toEndOf="@id/imgComment"
                 android:layout_toRightOf="@id/imgComment"
-                android:text="0 Comments"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
 
         </RelativeLayout>
